@@ -67,7 +67,7 @@ void setup() {
     delay(500);
     Serial.println("Connecting to WiFi..");
   }
-  
+
   Serial.println("Connected to the WiFi network");
 
 
@@ -123,13 +123,13 @@ void loop() {
     }
 
     //TEMP REMOVE BELOW - ONLY FOR DEBUG
-    //   if (currentCam == 2) {
-    //     drawLabel(GREEN, BLACK, HIGH, currentCam, "PREVIEW");
-    //   } else if (currentCam == 3) {
-    //     drawLabel(RED, BLACK, LOW, currentCam, "LIVE");
-    //   } else {
-    //     drawLabel(WHITE, GRAY, HIGH, currentCam, "INACTIVE");
-    //   }
+    //    if (currentCam == 2) {
+    //      drawLabel(GREEN, BLACK, HIGH, currentCam, "PREVIEW");
+    //    } else if (currentCam == 3) {
+    //      drawLabel(RED, BLACK, LOW, currentCam, "LIVE");
+    //    } else {
+    //      drawLabel(WHITE, GRAY, HIGH, currentCam, "INACTIVE");
+    //    }
 
     // DO WE NOW CHANGE CAM STATE HERE?
     CamPrevious = currentCam;
@@ -171,6 +171,7 @@ void logState(int ProgramTally, int PreviewTally) {
 
 }
 
+// PURELY FOR TESTING
 double getRandomBin()
 {
   return (double)rand() / (double)RAND_MAX ;
@@ -207,6 +208,12 @@ void drawLabel(unsigned long int screenColor, unsigned long int labelColor, bool
   M5.Lcd.setCursor(50, 110);
   M5.Lcd.printf("%d", (camNumber));
 
+  // ADD A WEE RECORDING CIRCLE
+  if (screenColor == RED) {
+    M5.Lcd.fillCircle(115, 115, 10, 0xA800);
+  }
+
+  // STATUS STRING AT THE BOTTOM
   M5.Lcd.setTextSize(2);
   M5.Lcd.setCursor(16, 200);
   M5.Lcd.printf(statusString);
